@@ -1,3 +1,14 @@
+
+/**/
 div {
     background-color: greenyellow;
+}
+
+
+/*FORMS styles*/
+input.ng-dirty {
+    background-color: orange;
+}
+input.ng-valid {
+    background-color: lightgreen;
 }
