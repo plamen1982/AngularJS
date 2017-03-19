@@ -1,0 +1,22 @@
+{
+  "name": "videosystem",
+  "description": "Video system for MACoding Club web site",
+  "main": "app.js",
+  "authors": [
+    "Plamen Hristov"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "video",
+    "system",
+    "macodingclub"
+  ],
+  "homepage": "https://github.com/plamen1982/AngularJS",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -10,33 +10,32 @@
 <body ng-app="MACodingClubVideoSystem">
 
 <div ng-controller="VideoSystemCtrl">
- <div ng-repeat="videoObject in videoObjectArray">  
-    <div>
-        <p>Title: {{videoObject.title}}</p>
-        <div>Picture: <img ng-src="{{videoObject.pictureUrl}}"/></div>
-        <p>Length: {{videoObject.length}}</p>
-        <p>Category: {{videoObject.category}}</p>
-        <p>Subscribers count: {{videoObject.subscribers}}</p>
-        <p>Date: {{videoObject.date}}</p>
-        <p>Have Subtitles: {{videoObject.haveSubtitles}}</p>
- 
-    <div ng-repeat="comment in videoObject.comments">
-        <p>Username: {{ comment.username }}</p>
-        <p>Content: {{ comment.content }}</p>
-        <p>Date: {{ comment.date }}</p>
-        <p>Likes: {{ comment.likes }}</p>
-        <p>
-            <a href="{{comment.websiteUrl }}">Please, if you want visit out website !</a> 
-        </p>
+    <div ng-repeat="videoObject in videoObjectArray">  
+        <div>
+            <p>Title: {{videoObject.title}}</p>
+            <div>Picture: <img ng-src="{{videoObject.pictureUrl}}"/></div>
+            <p>Length: {{videoObject.length}}</p>
+            <p>Category: {{videoObject.category}}</p>
+            <p>Subscribers count: {{videoObject.subscribers}}</p>
+            <p>Date: {{videoObject.date}}</p>
+            <p>Have Subtitles: {{videoObject.haveSubtitles}}</p>
+        <div ng-repeat="comment in videoObject.comments">
+            <p>Username: {{ comment.username }}</p>
+            <p>Content: {{ comment.content }}</p>
+            <p>Date: {{ comment.date }}</p>
+            <p>Likes: {{ comment.likes }}</p>
+            <p>
+                <a href="{{comment.websiteUrl }}">Please, if you want visit out website !</a> 
+            </p>
+        </div>
     </div>
-    </div>
-  </div>
-  <form >
-      <label>Title: <input type = "text" required ng-model="newVideo.title"/>*</labe></br>
-      <label>pictureUrl: <input type = "url" required ng-model="newVideo.pictureUrl"/>*</labe></br>
-      <label>category: <input type = "text" required ng-model="newVideo.category"/>*</labe></br>
-      <input type="submit" ng-disabled="newVideo.$invalid" ng-click = addVideoObject(newVideo) /> 
- </form>  
+</div>
+<form >
+    <label>Title: <input type = "text" required ng-model="newVideo.title"/>*</labe></br>
+    <label>pictureUrl: <input type = "url" required ng-model="newVideo.pictureUrl"/>*</labe></br>
+    <label>category: <input type = "text" required ng-model="newVideo.category"/>*</labe></br>
+    <input type="submit" ng-disabled="newVideo.$invalid" ng-click = addVideoObject(newVideo) /> 
+</form>  
 </div>  
 <script src = "app.js"></script>
 <script src = "controllers/videoSystemCtrl.js"></script>
