@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>MA Coding Club Video System</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+input.ng-dirty {
+    background-color: orange;
+}
+input.ng-valid {
+    background-color: lightgreen;
+}
+  </style>
+</head>
+
+<body ng-app="MACodingClubVideoSystem">
+
+<div ng-controller="VideoSystemCtrl">
+ <div ng-repeat="videoObject in videoObjectArray">  
+    <div>
+        <p>Title: {{videoObject.title}}</p>
+        <div>Picture: <img ng-src="{{videoObject.pictureUrl}}"/></div>
+        <p>Length: {{videoObject.length}}</p>
+        <p>Category: {{videoObject.category}}</p>
+        <p>Subscribers count: {{videoObject.subscribers}}</p>
+        <p>Date: {{videoObject.date}}</p>
+        <p>Have Subtitles: {{videoObject.haveSubtitles}}</p>
+ 
+    <div ng-repeat="comment in videoObject.comments">
+        <p>Username: {{ comment.username }}</p>
+        <p>Content: {{ comment.content }}</p>
+        <p>Date: {{ comment.date }}</p>
+        <p>Likes: {{ comment.likes }}</p>
+        <p>
+            <a href="{{comment.websiteUrl }}">Please, if you want visit out website !</a> 
+        </p>
+    </div>
+    </div>
+  </div>
+  <form >
+      <label>Title: <input type = "text" required ng-model="newVideo.title"/>*</labe></br>
+      <label>pictureUrl: <input type = "url" required ng-model="newVideo.pictureUrl"/>*</labe></br>
+      <label>category: <input type = "text" required ng-model="newVideo.category"/>*</labe></br>
+      <input type="submit" ng-disabled="newVideo.$invalid" ng-click = addVideoObject(newVideo) /> 
+ </form>  
+</div>  
+<script>
+
+var MACodingClubVideoSystem = angular.module('MACodingClubVideoSystem',[])
+
+.controller('VideoSystemCtrl', ['$scope', 'videoService', function($scope, videoService){
+    // $scope.videoObject = videoService[0].videoObject;
+    $scope.videoObjectArray = [];
+    console.log(videoService[0])
+    if(videoService[0]){
+        $scope.videoObjectArray.push(videoService[0].videoObject);
+        console.log($scope.videoObjectArray[0].videoObject)
+    } else (
+        console.log('Something does not work!')
+    )
+
+    $scope.addVideoObject = function addVideoObject(videoObject){
+        $scope.videoObjectArray.push(videoObject)
+    }
+    
+    $scope.comments = $scope.videoObjectArray[0].comments;
+    
+}])
+
+.factory('videoService', function(){
+    return [{
+    videoObject: {
+    title: 'Course introduction',
+    pictureUrl: 'http://lorempixel.com/400/200/',
+    length: '3:32',
+    category: 'IT',
+    subscribers: 3,
+    date: new Date(2014, 12, 15).toDateString(),
+    haveSubtitles: false,
+    comments: [
+    {
+        username: 'Pesho Peshev',
+        content: 'Congratulations Peshko!',
+        date: new Date(2014, 12, 15, 12, 30, 0).toDateString(),
+        likes: 2,
+        websiteUrl: 'http://pesho.com/'
+    },
+    {
+        username: 'pax',
+        content: 'Congratulations paxi!',
+        date: new Date(2014, 12, 15, 12, 30, 0).toDateString(),
+        likes: 322,
+        websiteUrl: 'http://pesho.com/'
+    },
+    {
+        username: 'Misho  Mishkov',
+        content: 'Congratulations Mishka!',
+        date: new Date(2014, 12, 15, 12, 30, 0).toDateString(),
+        likes: 32,
+        websiteUrl: 'http://pesho.com/'
+    }
+
+                ]
+            }
+        }]
+    }
+)
+</script>
+</body>
+</html>

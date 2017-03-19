@@ -1,0 +1,1 @@
+var peshoApp = angular.module('peshoApp', [])
