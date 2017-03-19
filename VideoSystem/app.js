@@ -1,0 +1,1 @@
+var MACodingClubVideoSystem = angular.module('MACodingClubVideoSystem',[])
