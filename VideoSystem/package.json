@@ -1,0 +1,21 @@
+{
+  "name": "videosystem",
+  "version": "1.0.0",
+  "description": "Video system for MACoding Club web site",
+  "main": "app.js",
+  "scripts": {
+    "start":"node web-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plamen1982/AngularJS/tree/master/VideoSystem.git"
+  },
+  "keywords": [
+    "video",
+    "system",
+    "macodingclub"
+  ],
+  "author": "Plamen Hristov",
+  "license": "ISC"
+}
