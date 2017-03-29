@@ -4,5 +4,7 @@ MACodingClubVideoSystem.controller('VideoSystemCtrl', ['$scope', 'videoService',
     $scope.videoObjectArray = videoService.getAllVideos();                    
         $scope.addVideoObject = function addVideoObject(videoObject){
         $scope.videoObjectArray.push(videoObject)
+        document.getElementById("myForm").reset();
     }
+
 }])
