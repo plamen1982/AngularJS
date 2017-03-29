@@ -4,11 +4,15 @@ div {
     background-color: greenyellow;
 }
 
-
 /*FORMS styles*/
 input.ng-dirty {
     background-color: orange;
 }
 input.ng-valid {
     background-color: lightgreen;
+}
+
+.container {
+    display: inline-block;
+    width: 150px;
 }

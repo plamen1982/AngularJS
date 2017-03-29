@@ -1,40 +1,70 @@
 <!DOCTYPE html>
-<html lang="en-US">
-
+<html lang="en-US"  ng-app="MACodingClubVideoSystem">
 <head>
   <title>MA Coding Club Video System</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <script src="./bower_components/angular/angular.js"></script>
+  <!--
+  <link rel="stylesheet" type="text/css" href="bower_components/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/dist/css/bootstrap-theme.css">
+  -->
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 
-<body ng-app="MACodingClubVideoSystem">
+<body ng-cloak>
 
 <div ng-controller="VideoSystemCtrl">
-    <div ng-repeat="videoObject in videoObjectArray">  
-        <div>
-            <p>Title: {{videoObject.title}}</p>
-            <div>Picture: <img ng-src="{{videoObject.pictureUrl}}"/></div>
-            <p>Length: {{videoObject.length}}</p>
-            <p>Category: {{videoObject.category}}</p>
-            <p>Subscribers count: {{videoObject.subscribers}}</p>
-            <p>Date: {{videoObject.date}}</p>
-            <p>Have Subtitles: {{videoObject.haveSubtitles}}</p>
-        <div ng-repeat="comment in videoObject.comments">
-            <p>Username: {{ comment.username }}</p>
-            <p>Content: {{ comment.content }}</p>
-            <p>Date: {{ comment.date }}</p>
-            <p>Likes: {{ comment.likes }}</p>
-            <p>
-                <a href="{{comment.websiteUrl }}">Please, if you want visit out website !</a> 
-            </p>
+    <!--<md-content layout-padding>
+        <div layout-gt-xs="row">
+            <div flex-gt-xs>
+            <h4>Standard date-picker</h4>
+            <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
         </div>
+    </md-content>-->
+    <div>Filter by:
+        <select name = "Filtering" ng-model="myFilter.videoObject.category">
+            <option selected value="">All</option>
+            <option value="IT">IT</option>
+            <option value="Auto">Auto</option>
+        </select>
+    </div>
+    <div>Order by Category: 
+        <select name="ordering" ng-model="ordering">
+            <option value="">None</option>
+            <option value="title">Title</option>
+            <option value="subscribers">Subscribers</option>
+            <option value="length">length</option>
+        </select>
+    </div>
+    <div ng-repeat="video in videoObjectArray | orderBy: ordering | filter: myFilter track by $index">  
+        <div class="container">
+            <p>Title: {{video.videoObject.title}}</p>
+            <div>Picture: <img ng-src="{{video.videoObject.pictureUrl}}"/></div>
+            <p>Length: {{video.videoObject.length}}</p>
+            <p>Category: {{video.videoObject.category}}</p>
+            <p>Subscribers count: {{video.videoObject.subscribers}}</p>
+            <p>Date: {{video.videoObject.date}}</p>
+            <p>Have Subtitles: {{video.videoObject.haveSubtitles}}</p>
+            <div ng-repeat="comment in video.videoObject.comments">
+                <p>Username: {{ comment.username }}</p>
+                <p>Content: {{ comment.content }}</p>
+                <p>Date: {{ comment.date }}</p>
+                <p>Likes: {{ comment.likes }}</p>
+                <p>
+                    <a href="{{comment.websiteUrl}}">Please, if you want visit out website !</a> 
+                </p>
+            </div>
     </div>
 </div>
-<form >
-    <label>Title: <input type = "text" required ng-model="newVideo.title"/>*</labe></br>
-    <label>pictureUrl: <input type = "url" required ng-model="newVideo.pictureUrl"/>*</labe></br>
-    <label>category: <input type = "text" required ng-model="newVideo.category"/>*</labe></br>
-    <input type="submit" ng-disabled="newVideo.$invalid" ng-click = addVideoObject(newVideo) /> 
+<form name="newVideo">
+    <label>Title: <input type = "text" required ng-model = "newVideo.videoObject.title">*</labe></br>
+    <label>pictureUrl: <input type = "url" required ng-model = "newVideo.videoObject.pictureUrl"/>*</labe></br>
+    <label>category: <input type = "text" required ng-model = "newVideo.videoObject.category"/>*</labe></br>
+    <input type="submit" ng-disabled = "newVideo.$invalid" ng-click = addVideoObject(newVideo) /> 
 </form>  
 </div>  
 <script src = "app.js"></script>
